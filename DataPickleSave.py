@@ -2,10 +2,10 @@ import os
 import pickle
 import re
 import string
-from Anforande import Anforande  
+from Speech import Speech
 
 stop_words = []
-alla_anforanden = []
+all_speeches = []
 #fel = 0
 
 with open("Common_words.txt", "r", encoding='utf-8') as stop_word_file:
@@ -76,8 +76,8 @@ for year_folder in os.listdir(base_folder):
                             party = party.upper()
                             if party == "FP":
                                  party = "L"
-                            anforande = Anforande(file_path, party, name, speech, year)
-                            alla_anforanden.append(anforande)
+                            anforande = Speech(file_path, party, name, speech, year)
+                            all_speeches.append(anforande)
                     except ValueError as e:
                          #fel += 1
                          #print(fel)
@@ -121,6 +121,6 @@ for filename in os.listdir(folder_path):
 
 
 
-pickle_sökväg = "anforanden.pickle"
-with open(pickle_sökväg, "wb") as fil:
-    pickle.dump(alla_anforanden, fil)
+pickle_file_path = "anforanden.pickle"
+with open(pickle_file_path, "wb") as file:
+    pickle.dump(all_speeches, file)
